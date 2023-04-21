@@ -10,6 +10,7 @@ const Kata1 = () => {
   ]);
   const [totalReduce, setTotalReduce] = useState(0);
   const [frequency, setFrequency] = useState([]);
+  const [indexEight, setIndexEight] = useState();
 
   const ascending = (list) => {
     for (let i = 0; i < list.length; i++) {
@@ -60,7 +61,16 @@ const Kata1 = () => {
     setFrequency(frequencyArray);
   };
 
+  const functionFindEight = (list) => {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i] === 8) {
+        setIndexEight(i + 1);
+      } else setIndexEight("Pas de chiffre 8 dans la liste...");
+    }
+  };
+
   useEffect(() => {
+    functionFindEight(list);
     frequencyList(list);
     functionReduce(list);
     setListAscending(ascending(listAscending));
@@ -76,8 +86,9 @@ const Kata1 = () => {
         </div>
         <div className="textRulesKata">
           Avec la liste suivante 1, 8, 2, 2, 3, 4, 7, 2. Classer les élements
-          dans l'ordre croissant, décroissant, coder la fonction reduce, compter
-          la fréquence d'apparition d'un chiffre
+          dans l'ordre croissant, décroissant, coder : la fonction reduce,
+          compter la fréquence d'apparition d'un chiffre, la fonction find pour
+          le chiffre 8 en renvoyant aussi son index.
         </div>
         <div>
           Liste classée par ordre croissant : {listAscending.join(", ")}
@@ -86,7 +97,15 @@ const Kata1 = () => {
           Liste classée par ordre décroissant : {listDescending.join(", ")}
         </div>
         <div>Reduce : {totalReduce}</div>
-        <div>Frequence : {frequency}</div>
+        <div>
+          Frequence :
+          {frequency.map((item) => (
+            <div key={item.number}>
+              {item.number}: {item.frequency}
+            </div>
+          ))}
+        </div>
+        <div>Le chiffre 8 est à l'index : {indexEight}</div>
       </div>
     </div>
   );
