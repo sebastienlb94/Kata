@@ -62,10 +62,17 @@ const Kata1 = () => {
   };
 
   const functionFindEight = (list) => {
+    let index = -1;
     for (let i = 0; i < list.length; i++) {
       if (list[i] === 8) {
-        setIndexEight(i + 1);
-      } else setIndexEight("Pas de chiffre 8 dans la liste...");
+        index = i + 1;
+        break;
+      }
+    }
+    if (index === -1) {
+      setIndexEight("Pas de chiffre 8 dans la liste...");
+    } else {
+      setIndexEight(index);
     }
   };
 
@@ -82,10 +89,10 @@ const Kata1 = () => {
       <div className="rulesKata">
         <div className="topRulesKata">
           <div className="title">Les listes</div>
-          <div className="level">* * *</div>
+          <div className="level">*</div>
         </div>
         <div className="textRulesKata">
-          Avec la liste suivante 1, 8, 2, 2, 3, 4, 7, 2. Classer les élements
+          Avec la liste suivante 1, 8, 2, 2, 3, 4, 7, 2. Classer les éléments
           dans l'ordre croissant, décroissant, coder : la fonction reduce,
           compter la fréquence d'apparition d'un chiffre, la fonction find pour
           le chiffre 8 en renvoyant aussi son index.
